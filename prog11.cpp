@@ -10,5 +10,5 @@ int main()
     cout<<"Enter the value of a and b"<<endl;
     cin>>a;
     cin>>b;
-    cout<<"The product of a and b is "<<product(a,b)<<endl; 
+    cout<<"The product of a and b is "<<product(a,b)<<endl;  
 }
