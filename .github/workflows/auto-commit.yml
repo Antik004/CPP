@@ -13,10 +13,30 @@ jobs:
       - name: Checkout repository content
         uses: actions/checkout@v2
 
-      - name: Commit changes
+      - name: Configure Git
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'Antik Adhya'
+          git config --global user.email 'adhyaantik03@gmail.com'
+
+      - name: Check for changes
+        id: changes
+        run: |
           git add .
+          if git diff-index --quiet HEAD; then
+            echo "::set-output name=changes::false"
+          else
+            echo "::set-output name=changes::true"
+          fi
+
+      - name: Commit changes
+        if: steps.changes.outputs.changes == 'true'
+        run: |
           git commit -m 'Automated commit by GitHub Actions'
+
+      - name: Push changes
+        if: steps.changes.outputs.changes == 'true'
+        run: |
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
