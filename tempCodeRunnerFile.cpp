@@ -1,2 +1,5 @@
-  // int a,b,c;
-    // float d=34.4;
+ // number(number &obj)
+    // {
+    //     cout<<"copy constructor called"<<endl;
+    //     a = obj.a;
+    // }
