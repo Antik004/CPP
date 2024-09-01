@@ -1,5 +1,2 @@
- // number(number &obj)
-    // {
-    //     cout<<"copy constructor called"<<endl;
-    //     a = obj.a;
-    // }
+ // programmer antik;
+    // antik.get_level()
