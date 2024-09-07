@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class Shape {
+public:
+    virtual double surface_area() const = 0; // Pure virtual function for surface area
+    virtual double volume() const = 0;       // Pure virtual function for volume
+    virtual ~Shape() = default;              // Virtual destructor
+};
+
+class Cuboid : public Shape {
+private:
+    double length, width, height;
+public:
+    Cuboid(double l, double w, double h) : length(l), width(w), height(h) {}
+
+    double surface_area() const override {
+        return 2 * (length * width + width * height + height * length);
+    }
+
+    double volume() const override {
+        return length * width * height;
+    }
+};
+
+class Cone : public Shape {
+private:
+    double radius, height;
+public:
+    Cone(double r, double h) : radius(r), height(h) {}
+
+    double surface_area() const override {
+        double slant_height = std::sqrt(radius * radius + height * height);
+        return M_PI * radius * (radius + slant_height);
+    }
+
+    double volume() const override {
+        return (M_PI * radius * radius * height) / 3;
+    }
+};
+
+class Cylinder : public Shape {
+private:
+    double radius, height;
+public:
+    Cylinder(double r, double h) : radius(r), height(h) {}
+
+    double surface_area() const override {
+        return 2 * M_PI * radius * (radius + height);
+    }
+
+    double volume() const override {
+        return M_PI * radius * radius * height;
+    }
+};
+
+int main() {
+    Shape* shape;
+
+    // Cuboid
+    shape = new Cuboid(4.0, 5.0, 6.0);
+    std::cout << "Cuboid Surface Area: " << shape->surface_area() << std::endl;
+    std::cout << "Cuboid Volume: " << shape->volume() << std::endl;
+    delete shape;
+
+    // Cone
+    shape = new Cone(3.0, 7.0);
+    std::cout << "Cone Surface Area: " << shape->surface_area() << std::endl;
+    std::cout << "Cone Volume: " << shape->volume() << std::endl;
+    delete shape;
+
+    // Cylinder
+    shape = new Cylinder(3.0, 7.0);
+    std::cout << "Cylinder Surface Area: " << shape->surface_area() << std::endl;
+    std::cout << "Cylinder Volume: " << shape->volume() << std::endl;
+    delete shape;
+
+    return 0;
+}
