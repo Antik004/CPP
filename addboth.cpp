@@ -35,5 +35,5 @@ int main() {
     int result = addBoth(objA, objB); // Add data1 and data2
     cout << "The sum of data1 and data2 is: " << result << endl;
 
-    return 0;
+    return 1;
 }
